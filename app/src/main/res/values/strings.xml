@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Yejoon Manual</string>
-    <string name="title_activity_instruction_list">InstructionListActivity</string>
+    <string name="title_activity_instruction_list">예준팀 메뉴얼</string>
 </resources>
