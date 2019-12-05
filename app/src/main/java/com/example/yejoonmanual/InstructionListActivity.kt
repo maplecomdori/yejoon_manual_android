@@ -2,7 +2,6 @@ package com.example.yejoonmanual
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_instruction_list.*
@@ -15,10 +14,13 @@ class InstructionListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_instruction_list)
         setSupportActionBar(toolbar)
 
-        taskList.adapter = ArrayAdapter(this,
+        juboTaskList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1,
-            DataManager.sectionTaskMap.keys.toList())
+            DataManager.sectionTaskMap.getValue("주보"))
 
+        yebeTaskList.adapter = ArrayAdapter(this,
+            android.R.layout.simple_list_item_1,
+            DataManager.sectionTaskMap.getValue("예배"))
 
     }
 
