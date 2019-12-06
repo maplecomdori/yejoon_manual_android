@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ShortcutActivity"
+            android:label="@string/title_activity_shortcut"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".InstructionListActivity"
             android:label="@string/title_activity_instruction_list"
             android:theme="@style/AppTheme.NoActionBar">

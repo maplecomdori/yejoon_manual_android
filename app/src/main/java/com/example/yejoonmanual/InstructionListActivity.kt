@@ -1,5 +1,6 @@
 package com.example.yejoonmanual
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,13 @@ class InstructionListActivity : AppCompatActivity() {
         juboTaskList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1,
             DataManager.sectionTaskMap.getValue("주보"))
+
+        juboTaskList.setOnItemClickListener { parent, view, position, id ->
+            val activityIntent = Intent(this, ShortcutActivity::class.java)
+//            activityIntent.putExtra(EXTRA_NOTE_POSITION, position)
+            startActivity(activityIntent)
+
+        }
 
         yebeTaskList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1,
