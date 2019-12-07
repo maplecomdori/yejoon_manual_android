@@ -7,7 +7,6 @@ object DataManager {
     val sectionTaskMap = HashMap<String, Array<String>>()
     val shortcutMap = TreeMap<String, TreeMap<String, String>>()
 
-
     init {
         val juboTasks = arrayOf("단축키", "아이디 & 비번", "예배 순서", "큐티",
             "종이 접는 기계", "프린트", "리뷰 리스트")
@@ -23,6 +22,7 @@ object DataManager {
         prepareTextSelectionShortcuts()
         prepareCopyPasteShortcuts()
         prepareFontShortcuts()
+        prepareParagraphShortcuts()
     }
 
     private fun prepareTextSelectionShortcuts() {
