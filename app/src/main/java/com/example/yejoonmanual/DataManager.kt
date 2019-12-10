@@ -4,22 +4,65 @@ import java.util.*
 import kotlin.collections.HashMap
 
 object DataManager {
-    val juboTasks = arrayOf("단축키 모음", "아이디 & 비번", "예배 순서", "큐티",
-        "종이 접는 기계", "프린트", "리뷰 리스트")
-    val serviceTasks = arrayOf("예배당 셋업", "성찬식", "자리 안내 요령", "a", "b", "c")
 
     val sectionTaskMap = HashMap<String, Array<String>>()
-    val shortcutMap = TreeMap<String, TreeMap<String, String>>()
 
     val keyValueTaskDataMap = TreeMap<Int, TreeMap<String, TreeMap<String, String>>>()
 
+    val shortcutMap = TreeMap<String, TreeMap<String, String>>()
+    val credMap = TreeMap<String, TreeMap<String, String>>()
+
 
     init {
+        val juboTasks = arrayOf("단축키 모음", "아이디 & 비번", "예배 순서", "큐티",
+            "종이 접는 기계", "프린트", "리뷰 리스트")
+        val serviceTasks = arrayOf("예배당 셋업", "성찬식", "자리 안내 요령", "a", "b", "c")
 
         sectionTaskMap.set("주보", juboTasks)
         sectionTaskMap.set("예배", serviceTasks)
 
         prepareShortcuts()
+        prepareCredentials()
+    }
+
+    private fun prepareCredentials() {
+        prepareLaptopCredentials()
+        prepareHomePageCredentials()
+        prepareEmailCredentials()
+        prepareQTCredentials()
+        keyValueTaskDataMap.put(1, shortcutMap)
+
+    }
+
+    private fun prepareLaptopCredentials() {
+        var map = TreeMap<String, String>()
+        map.put("비밀번호 (한글)", "찬방팀13")
+        map.put("비밀번호 (Eng)", "cksqkdxla13")
+        credMap.put("Dell 노트북", map)
+    }
+
+    private fun prepareHomePageCredentials() {
+        var map = TreeMap<String, String>()
+        map.put("ID", "yejoon")
+        map.put("비밀번호 (한글)", "예준팀8")
+        map.put("비밀번호 (Eng)", "dPwnsxla8")
+        credMap.put("홈페이지", map)
+    }
+
+    private fun prepareEmailCredentials() {
+        var map = TreeMap<String, String>()
+        map.put("ID", "youngnakwprep@gmail.com")
+        map.put("비밀번호 (한글)", "예준팀8")
+        map.put("비밀번호 (Eng)", "dPwnsxla8")
+        credMap.put("이메일", map)
+    }
+
+    private fun prepareQTCredentials() {
+        var map = TreeMap<String, String>()
+        map.put("ID", "yntoronto")
+        map.put("비밀번호 (한글)", "예준팀8")
+        map.put("비밀번호 (Eng)", "dPwnsxla8")
+        credMap.put("duranno.com", map)
     }
 
     private fun prepareShortcuts() {
