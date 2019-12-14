@@ -22,10 +22,15 @@ class InstructionListActivity : AppCompatActivity() {
 
 
         juboTaskList.setOnItemClickListener { parent, view, position, id ->
-            val activityIntent = Intent(this, KeyValueActivity::class.java)
-            activityIntent.putExtra(WHICH_SECTION, JUBO_SECTION)
-            activityIntent.putExtra(TITLE_POSITION, position)
-            startActivity(activityIntent)
+
+            val task = DataManager.juboTasks.get(position)
+            if (DataManager.keyValueTasks.contains(task)) {
+                val activityIntent = Intent(this, KeyValueActivity::class.java)
+                activityIntent.putExtra(WHICH_SECTION, JUBO_SECTION)
+                activityIntent.putExtra(TITLE_POSITION, position)
+                startActivity(activityIntent)
+            }
+
         }
 
         yebeTaskList.adapter = ArrayAdapter(this,
@@ -33,10 +38,7 @@ class InstructionListActivity : AppCompatActivity() {
             DataManager.sectionTaskMap.getValue("예배"))
 
         yebeTaskList.setOnItemClickListener { parent, view, position, id ->
-            val activityIntent = Intent(this, KeyValueActivity::class.java)
-            activityIntent.putExtra(WHICH_SECTION, YEBE_SECTION)
-            activityIntent.putExtra(TITLE_POSITION, position)
-            startActivity(activityIntent)
+
         }
     }
 
