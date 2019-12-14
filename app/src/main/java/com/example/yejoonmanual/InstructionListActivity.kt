@@ -18,8 +18,7 @@ class InstructionListActivity : AppCompatActivity() {
 
         juboTaskList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1,
-            DataManager.sectionTaskMap.getValue("주보"))
-
+            DataManager.juboTasks)
 
         juboTaskList.setOnItemClickListener { parent, view, position, id ->
 
@@ -30,12 +29,11 @@ class InstructionListActivity : AppCompatActivity() {
                 activityIntent.putExtra(TITLE_POSITION, position)
                 startActivity(activityIntent)
             }
-
         }
 
         yebeTaskList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1,
-            DataManager.sectionTaskMap.getValue("예배"))
+            DataManager.serviceTasks)
 
         yebeTaskList.setOnItemClickListener { parent, view, position, id ->
 

@@ -9,7 +9,6 @@ object DataManager {
         "종이 접는 기계", "프린트", "리뷰 리스트")
     val serviceTasks = arrayOf("예배당 셋업", "성찬식", "자리 안내 요령")
     val keyValueTasks = setOf("단축키", "아이디 & 비번")
-    val sectionTaskMap = HashMap<String, Array<String>>()
 
     val keyValueTaskDataMap = TreeMap<String, TreeMap<String, TreeMap<String, String>>>()
 
@@ -18,10 +17,6 @@ object DataManager {
 
 
     init {
-
-        sectionTaskMap.set("주보", juboTasks)
-        sectionTaskMap.set("예배", serviceTasks)
-
         prepareShortcuts()
         prepareCredentials()
     }
