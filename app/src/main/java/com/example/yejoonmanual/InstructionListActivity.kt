@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.example.yejoonmanual.DataManager.shortcutMap
 
 import kotlinx.android.synthetic.main.activity_instruction_list.*
 import kotlinx.android.synthetic.main.content_instruction_list.*
@@ -20,7 +19,7 @@ class InstructionListActivity : AppCompatActivity() {
             android.R.layout.simple_list_item_1,
             DataManager.juboTasks)
 
-        juboTaskList.setOnItemClickListener { parent, view, position, id ->
+        juboTaskList.setOnItemClickListener { _, _, position, _ ->
 
             val task = DataManager.juboTasks.get(position)
             if (DataManager.keyValueTasks.contains(task)) {
@@ -35,7 +34,8 @@ class InstructionListActivity : AppCompatActivity() {
             android.R.layout.simple_list_item_1,
             DataManager.serviceTasks)
 
-        yebeTaskList.setOnItemClickListener { parent, view, position, id ->
+//        yebeTaskList.setOnItemClickListener { parent, view, position, id ->
+        yebeTaskList.setOnItemClickListener { _, _, _, _ ->
 
         }
     }

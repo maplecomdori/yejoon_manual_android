@@ -5,15 +5,14 @@ import kotlin.collections.HashMap
 
 object DataManager {
 
-    val juboTasks = arrayOf("단축키", "아이디 & 비번", "예배 순서", "큐티",
+    val juboTasks:Array<String> = arrayOf("단축키", "아이디 & 비번", "예배 순서", "큐티",
         "종이 접는 기계", "프린트", "리뷰 리스트")
-    val serviceTasks = arrayOf("예배당 셋업", "성찬식", "자리 안내 요령")
-    val keyValueTasks = setOf("단축키", "아이디 & 비번")
+    val serviceTasks:Array<String> = arrayOf("예배당 셋업", "성찬식", "자리 안내 요령")
+    val keyValueTasks:Set<String> = setOf("단축키", "아이디 & 비번")
 
-    val keyValueTaskDataMap = TreeMap<String, TreeMap<String, TreeMap<String, String>>>()
-
-    val shortcutMap = TreeMap<String, TreeMap<String, String>>()
-    val credMap = TreeMap<String, TreeMap<String, String>>()
+    val keyValueTaskDataMap:TreeMap<String, Map<String, Map<String, String>>> = TreeMap()
+    private val shortcutMap = TreeMap<String, Map<String, String>>()
+    private val credMap = TreeMap<String, Map<String, String>>()
 
 
     init {
@@ -27,7 +26,6 @@ object DataManager {
         prepareEmailCredentials()
         prepareQTCredentials()
         keyValueTaskDataMap.put("아이디 & 비번", credMap)
-
     }
 
     private fun prepareLaptopCredentials() {

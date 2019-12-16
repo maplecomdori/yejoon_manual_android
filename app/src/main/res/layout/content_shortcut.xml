@@ -8,10 +8,33 @@
     tools:context=".KeyValueActivity"
     tools:showIn="@layout/activity_shortcut">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
 
+    <LinearLayout
+        android:id="@+id/ll_keyValue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="TextView1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="TextView2"
+                android:textAlignment="viewEnd" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>
