@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginRight
 import kotlinx.android.synthetic.main.activity_shortcut.*
 import kotlinx.android.synthetic.main.content_shortcut.*
+
+
+
+
 
 class KeyValueActivity : AppCompatActivity() {
 
@@ -28,19 +31,27 @@ class KeyValueActivity : AppCompatActivity() {
 
         for ((title, kvMap) in this.dataMap) {
             val ll = LinearLayout(this)
-            ll.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+            val ll_layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT)
+            ll_layoutParams.setMargins(0, 0, 0, 50)
+            ll.layoutParams = ll_layoutParams
             ll.orientation = LinearLayout.VERTICAL
 
             val tvTitle = TextView(this)
             tvTitle.textSize = 40f
             tvTitle.text = title
+            val params =
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            params.setMargins(0, 0, 0, 20)
+            tvTitle.setLayoutParams(params)
             ll.addView(tvTitle)
 
             for ((k, v) in kvMap) {
                 val container = LinearLayout(this)
-                container.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                val containerLayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT)
+                containerLayoutParams.setMargins(0,0, 0, 10)
+                container.layoutParams = containerLayoutParams
                 container.orientation = LinearLayout.HORIZONTAL
 
                 val tvKey = TextView(this)
@@ -48,7 +59,7 @@ class KeyValueActivity : AppCompatActivity() {
                 tvKey.text = k
                 tvKey.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
                 tvKey.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f)
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f)
 
                 val tvValue = TextView(this)
                 tvValue.textSize = 20f
@@ -56,7 +67,7 @@ class KeyValueActivity : AppCompatActivity() {
                 tvValue.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_END
 
                 tvValue.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f)
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.6f)
 
                 container.addView(tvKey)
                 container.addView(tvValue)
