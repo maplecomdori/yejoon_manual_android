@@ -20,14 +20,19 @@ class InstructionListActivity : AppCompatActivity() {
             DataManager.juboTasks)
 
         juboTaskList.setOnItemClickListener { _, _, position, _ ->
-
             val task = DataManager.juboTasks.get(position)
+            var intent = Intent()
+            intent.putExtra(WHICH_SECTION, JUBO_SECTION)
+            intent.putExtra(TITLE_POSITION, position)
+
             if (DataManager.keyValueTasks.contains(task)) {
-                val activityIntent = Intent(this, KeyValueActivity::class.java)
-                activityIntent.putExtra(WHICH_SECTION, JUBO_SECTION)
-                activityIntent.putExtra(TITLE_POSITION, position)
-                startActivity(activityIntent)
+                intent.setClass(this, KeyValueActivity::class.java)
             }
+            else if (DataManager.imageTasks.contains(task)) {
+                intent.setClass(this, ImageInstructionActivity::class.java)
+            }
+
+            startActivity(intent)
         }
 
         yebeTaskList.adapter = ArrayAdapter(this,
@@ -39,5 +44,7 @@ class InstructionListActivity : AppCompatActivity() {
 
         }
     }
+
+
 
 }

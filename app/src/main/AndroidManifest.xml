@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ImageInstructionActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".KeyValueActivity"
-            android:label="@string/title_activity_shortcut"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InstructionListActivity"
             android:label="@string/title_activity_instruction_list"
