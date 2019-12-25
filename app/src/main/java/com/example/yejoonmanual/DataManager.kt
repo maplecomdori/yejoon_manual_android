@@ -9,19 +9,42 @@ object DataManager {
         INST_SHORTCUT, INST_CRED, INST_SERVICE_ORDER, INST_QT,
         INST_FOLDING_MACHINE, INST_PRINT, INST_REVIEW)
     val serviceTasks:Array<String> = arrayOf(INST_YEBEDANG, INST_COMMUNION, INST_SEATING_TIP)
-    val keyValueTasks:Set<String> = setOf(INST_SHORTCUT, INST_CRED)
-    val imageTasks:Set<String> = setOf(INST_QT, INST_FOLDING_MACHINE, INST_PRINT,
-        INST_YEBEDANG, INST_COMMUNION)
 
+    val keyValueTasks:Set<String> = setOf(INST_SHORTCUT, INST_CRED)
     val keyValueTaskDataMap:TreeMap<String, Map<String, Map<String, String>>> = TreeMap()
     private val shortcutMap = TreeMap<String, Map<String, String>>()
     private val credMap = TreeMap<String, Map<String, String>>()
 
-    val foldingMachineInstructions:Array<Instruction> = prepareFoldingMachineInstructions()
+    val imageTasks:Set<String> = setOf(INST_QT, INST_FOLDING_MACHINE, INST_PRINT,
+        INST_YEBEDANG, INST_COMMUNION)
+    val imageTaskDataMap: Map<String, Array<Instruction>> = prepareImageTaskDataMap()
 
     init {
         prepareShortcuts()
         prepareCredentials()
+    }
+
+    private fun prepareImageTaskDataMap(): Map<String, Array<Instruction>> {
+        return mapOf(
+            INST_PRINT to preparePrinterInstructions(),
+            INST_FOLDING_MACHINE to prepareFoldingMachineInstructions(),
+            INST_QT to prepareQTInstructions())
+    }
+
+    private fun preparePrinterInstructions(): Array<Instruction> {
+        val paper = Instruction("종이 넣는 방향", "images/printer/printer_paper.jpg", "컬러로 인쇄된 부빈이 \"자신\"쪽으로 오게 종이를 넣어주세요")
+        val twoSided = Instruction("양면 프린트", "images/printer/print_two_sided_flip_short_side.jpg", "\"Two-sided, flip short side\"를 선택해야 위 아래가 뒤집히지 않고 양면 프린트를 할 수 있어요")
+        val printer = Instruction("Printer Name", "images/printer/printer_name.jpg", "7086 (오른쪽 프린터)\n7095 (왼쪽 프린터")
+        return arrayOf(paper, twoSided, printer)
+    }
+
+    private fun prepareQTInstructions(): Array<Instruction> {
+        val checkFolder = Instruction("예준팀 폴더 확인", null, "예준팀 폴더에서 QT pdf 파일을 열어서 기재하고 pdf 파일이 없으면 밑을 참고하여 예준팀 폴더에 다운받아요")
+        val clickMenu = Instruction("duranno.com", "images/qt/qt_menu.png", "메뉴에서 \"큐디\" 클릭")
+        val logIn = Instruction("로그인", "images/qt/qt_login.png", "아이디/비번은 앱에 있어요")
+        val calendar = Instruction("\"QT 캘린더\" 클릭", "images/qt/qt_calendar_button.png", null)
+        val download = Instruction("PDF 파일 다운", "images/qt/qt_download.png", "예준팀 폴더에 넣어주세요. 파일 이름에 연도와 달을 넣어주세요. 예)\"201912\"")
+        return arrayOf(checkFolder, clickMenu, logIn, calendar, download)
     }
 
     private fun prepareFoldingMachineInstructions(): Array<Instruction> {
