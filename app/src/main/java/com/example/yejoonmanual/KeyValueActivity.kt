@@ -8,9 +8,6 @@ import kotlinx.android.synthetic.main.activity_shortcut.*
 import kotlinx.android.synthetic.main.content_shortcut.*
 
 
-
-
-
 class KeyValueActivity : AppCompatActivity() {
 
     private var dataMap:Map<String, Map<String, String>> = mapOf()
@@ -23,11 +20,10 @@ class KeyValueActivity : AppCompatActivity() {
         setTitle()
         dataMap = getTaskDataMap() ?: mapOf()
         createUI()
-
     }
 
 
-    fun createUI() {
+    private fun createUI() {
 
         for ((title, kvMap) in this.dataMap) {
             val ll = LinearLayout(this)

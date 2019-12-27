@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ImageInstructionActivity">
 
+
+    <LinearLayout
+        android:id="@+id/ll_imageInst"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
