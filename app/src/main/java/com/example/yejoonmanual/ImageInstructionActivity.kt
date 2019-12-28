@@ -59,11 +59,8 @@ class ImageInstructionActivity : AppCompatActivity() {
             }
             if(inst.description != null) {
                 val tvDesc = TextView(this)
-                tvDesc.setTextColor(Color.WHITE)
-                val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT)
-                tvDesc.layoutParams = params
                 tvDesc.text = inst.description
+                TextViewCompat.setTextAppearance(tvDesc, R.style.instructionDescription)
 
                 ll.addView(tvDesc)
             }

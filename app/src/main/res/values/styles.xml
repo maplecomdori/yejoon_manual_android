@@ -22,4 +22,10 @@
         <item name="android:textSize">32sp</item>
     </style>
 
+    <style name="instructionDescription">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>
