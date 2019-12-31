@@ -10,13 +10,13 @@ object DataManager {
         INST_FOLDING_MACHINE, INST_PRINT, INST_REVIEW)
     val serviceTasks:Array<String> = arrayOf(INST_YEBEDANG, INST_COMMUNION, INST_SEATING_TIP)
 
-    val keyValueTasks:Set<String> = setOf(INST_SHORTCUT, INST_CRED)
+    val keyValueTasks:Set<String> = setOf(INST_SHORTCUT, INST_CRED, INST_REVIEW)
     val keyValueTaskDataMap:TreeMap<String, Map<String, Map<String, String>>> = TreeMap()
     private val shortcutMap = TreeMap<String, Map<String, String>>()
     private val credMap = TreeMap<String, Map<String, String>>()
 
     val imageTasks:Set<String> = setOf(INST_QT, INST_FOLDING_MACHINE, INST_PRINT,
-        INST_YEBEDANG, INST_COMMUNION)
+        INST_YEBEDANG, INST_COMMUNION, INST_SERVICE_ORDER)
     val imageTaskDataMap: Map<String, Array<Instruction>> = prepareImageTaskDataMap()
 
     init {
@@ -28,7 +28,37 @@ object DataManager {
         return mapOf(
             INST_PRINT to preparePrinterInstructions(),
             INST_FOLDING_MACHINE to prepareFoldingMachineInstructions(),
-            INST_QT to prepareQTInstructions())
+            INST_QT to prepareQTInstructions(),
+            INST_COMMUNION to prepareCommunionInstructions(),
+            INST_YEBEDANG to prepareChapelInstructions(),
+            INST_SERVICE_ORDER to prepareServiceOrderInstructions()
+        )
+    }
+
+    private fun prepareReviewInstructions() {
+
+        // keyValueTasks?
+    }
+
+    private fun prepareServiceOrderInstructions(): Array<Instruction> {
+        val katalk = Instruction("예배 순서", "images/yebe_order.png", "- 예배 순서는 카톡으로 올라 옵니다.\n" +
+                "- 카톡에 올라온 순서를 주보 메인 페이지에 그대로 반영해 주세요.\n" +
+                "- 성경 구절은 대표 기도자 옆에 넣어주세요.찬양은 홈페이지 광고에 올라와요.\n" +
+                "- 줄을 새로 넣거나 지울 때는 Right-Click -> Change Table")
+        val jubo = Instruction("Example", "images/jubo.jpg", "위 예배 순서를 참고해서 만든 주보")
+        return arrayOf(katalk, jubo)
+    }
+
+    private fun prepareChapelInstructions(): Array<Instruction> {
+
+        return arrayOf()
+    }
+
+    private fun prepareCommunionInstructions(): Array<Instruction> {
+        val communion = Instruction("성찬식 진행", "images/communion.png", "1. 그림에서 \"#1\" 이라고 표시된 두 곳에서 부터 출발 합니다.\n" +
+                "2. 뒤에 앉는 예준팀, 방송팀, 새신자팀\n" +
+                "3. 마지막으로 쉐마")
+        return arrayOf(communion)
     }
 
     private fun preparePrinterInstructions(): Array<Instruction> {
@@ -43,18 +73,19 @@ object DataManager {
         val clickMenu = Instruction("duranno.com", "images/qt/qt_menu.png", "메뉴에서 \"큐티\" 클릭")
         val logIn = Instruction("로그인", "images/qt/qt_login.png", "아이디/비번은 앱에 있어요")
         val calendar = Instruction("\"QT 캘린더\" 클릭", "images/qt/qt_calendar_button.png", null)
-        val download = Instruction("PDF 파일 다운", "images/qt/qt_download.png", "예준팀 폴더에 넣어주세요. 파일 이름에 연도와 달을 넣어주세요. 예)\"201912\"")
+        val download = Instruction("PDF 파일 다운", "images/qt/qt_download.png", "예준팀 폴더에 넣어주세요. 파일 이름에 연도와 달을 넣어주세요. 예)\"201910QT.pdf\"")
         return arrayOf(checkFolder, clickMenu, logIn, calendar, download)
     }
 
     private fun prepareFoldingMachineInstructions(): Array<Instruction> {
+        val power = Instruction("Power", null, "전원 버튼을 올려서 켜요")
         val handle = Instruction("핸들 내리기", "images/folding_machine/folding_machine_handle.jpg", "손잡이를 내려 종이를 넣을 공간을 만들어요")
         val paper = Instruction("종이 넣기", "images/folding_machine/folding_machine_paper.jpg", "민들레 포커스가 오른쪽에 놓이도록 종이를 넣고 손잡이를 다시 올려서 종이를 고정시켜 주세요")
         val topScale = Instruction("위에 눈금 조절", "images/folding_machine/folding_machine_top.jpg", "상단 금속 부분의 밑 부분을 빨간선에 맞춰 주세요")
         val bottomScale = Instruction("아래 눈금 조절", "images/folding_machine/folding_machine_bottom.jpg", "오른쪽은 '주보'라고 쓰여진 스티커와 금속에 붙은 화살표를 맞춰주세요. 왼쪽은 빨간선에 맞춰주세요.")
         val testPrint = Instruction("테스트 프린트", "images/folding_machine/folding_machine_button.jpg", "TEST 버튼을 누르면 두 장이 접혀서 나와요. 잘 접혔으면 START 버튼을 눌러서 나머지를 접어주세요")
         val cleanUp = Instruction("정리", "images/folding_machine/folding_machine_cleanup.jpg", "비닐을 덮고 전원을 끄고 전등을 끄고 나오세요")
-        return arrayOf(handle, paper, topScale, bottomScale, testPrint, cleanUp)
+        return arrayOf(power, handle, paper, topScale, bottomScale, testPrint, cleanUp)
     }
 
     private fun prepareCredentials() {
