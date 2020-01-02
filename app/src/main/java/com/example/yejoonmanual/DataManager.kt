@@ -31,13 +31,14 @@ object DataManager {
             INST_QT to prepareQTInstructions(),
             INST_COMMUNION to prepareCommunionInstructions(),
             INST_YEBEDANG to prepareChapelInstructions(),
-            INST_SERVICE_ORDER to prepareServiceOrderInstructions()
+            INST_SERVICE_ORDER to prepareServiceOrderInstructions(),
+            INST_REVIEW to prepareReviewInstructions()
         )
     }
 
-    private fun prepareReviewInstructions() {
+    private fun prepareReviewInstructions(): Array<Instruction> {
 
-        // keyValueTasks?
+        return arrayOf()
     }
 
     private fun prepareServiceOrderInstructions(): Array<Instruction> {
@@ -50,8 +51,13 @@ object DataManager {
     }
 
     private fun prepareChapelInstructions(): Array<Instruction> {
-
-        return arrayOf()
+        val chairs = Instruction("의자 두 줄 막기", "images/dedication/last_2rows.jpg","방송팀 앞 의자 두 줄을 늦게 오신 분들을 위해서 막고 말씀 시작과 함께 열어주세요")
+        val bag = Instruction("헌금 주머니", "images/dedication/bag.jpg", "헌금 주머니는 청년부실에 있어요. 매월 마지막 주는 선교 헌금이 있으니까 3개를 챙겨야 해요")
+        val box = Instruction("헌금통", "images/dedication/box.jpg", "헌금봉투와 펜을 예쁘게 올려놔 주세요. \n" +
+                "헌금봉투가 부족하면 본당 앞 테이블에서 더 있어요.")
+        val envelop = Instruction("헌금 봉투", "images/dedication/envelop_table.jpg", "헌금봉투는 대예배당 앞 테이블에서 가져오면 되요")
+        val table = Instruction("봉헌 테이블", "images/dedication/table.jpg", "봉헌 테이블을 찾아서 가운데 맨 앞줄에 놔주세요.")
+        return arrayOf(chairs, bag, box, envelop, table)
     }
 
     private fun prepareCommunionInstructions(): Array<Instruction> {
