@@ -10,13 +10,13 @@ object DataManager {
         INST_FOLDING_MACHINE, INST_PRINT, INST_REVIEW)
     val serviceTasks:Array<String> = arrayOf(INST_YEBEDANG, INST_COMMUNION, INST_SEATING_TIP)
 
-    val keyValueTasks:Set<String> = setOf(INST_SHORTCUT, INST_CRED, INST_REVIEW)
+    val keyValueTasks:Set<String> = setOf(INST_SHORTCUT, INST_CRED)
     val keyValueTaskDataMap:TreeMap<String, Map<String, Map<String, String>>> = TreeMap()
     private val shortcutMap = TreeMap<String, Map<String, String>>()
     private val credMap = TreeMap<String, Map<String, String>>()
 
     val imageTasks:Set<String> = setOf(INST_QT, INST_FOLDING_MACHINE, INST_PRINT,
-        INST_YEBEDANG, INST_COMMUNION, INST_SERVICE_ORDER)
+        INST_YEBEDANG, INST_COMMUNION, INST_SERVICE_ORDER, INST_REVIEW)
     val imageTaskDataMap: Map<String, Array<Instruction>> = prepareImageTaskDataMap()
 
     init {
@@ -37,8 +37,20 @@ object DataManager {
     }
 
     private fun prepareReviewInstructions(): Array<Instruction> {
-
-        return arrayOf()
+        val yebe_order = Instruction("예배 순서", null,"1.순서\n\t\t카톡에 올라온 예배 순서와 동일한 순서인가?\n" +
+                "2.암송구절\n\t\t최대한 흰 면에 있게 옮겨주세요\n" +
+                "3.형제 & 자매 확인 (성경봉독, 대표기도, etc)\n" +
+                "4.날짜 & 호수")
+        val ad = Instruction("광고", null, "1.밑줄\n\t\t모든 광고에 밑줄 하나씩 있나 확인\n" +
+                "2.밑에 짤렸나? (광고가 많아서)\n" +
+                "3.오타, 띄어쓰기 확인\n" +
+                "4.유통기한 지난 광고 지우기")
+        val cell = Instruction("셀 리스트", null, "1.새 셀원\n\t\t" +
+                "새 셀원이 기존 셀원들 다음에 마지막으로 추가되었나?\n\t\t" +
+                "새 셀원란 (마지막 줄)에 추가 되었나?\n\t\t" +
+                "새 셀원 & 새신자: 이름 오타? 복붙으로 오타 줄여요")
+        val back = Instruction("민포", null, "작성자 형제 자매 확인")
+        return arrayOf(yebe_order, ad, cell, back)
     }
 
     private fun prepareServiceOrderInstructions(): Array<Instruction> {
