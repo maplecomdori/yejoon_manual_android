@@ -1,7 +1,6 @@
 package com.example.yejoonmanual
 
 import java.util.*
-import kotlin.collections.HashMap
 
 object DataManager {
 
@@ -16,7 +15,7 @@ object DataManager {
     private val credMap = TreeMap<String, Map<String, String>>()
 
     val imageTasks:Set<String> = setOf(INST_QT, INST_FOLDING_MACHINE, INST_PRINT,
-        INST_YEBEDANG, INST_COMMUNION, INST_SERVICE_ORDER, INST_REVIEW)
+        INST_YEBEDANG, INST_COMMUNION, INST_SERVICE_ORDER, INST_REVIEW, INST_SEATING_TIP)
     val imageTaskDataMap: Map<String, Array<Instruction>> = prepareImageTaskDataMap()
 
     init {
@@ -32,12 +31,30 @@ object DataManager {
             INST_COMMUNION to prepareCommunionInstructions(),
             INST_YEBEDANG to prepareChapelInstructions(),
             INST_SERVICE_ORDER to prepareServiceOrderInstructions(),
-            INST_REVIEW to prepareReviewInstructions()
+            INST_REVIEW to prepareReviewInstructions(),
+            INST_SEATING_TIP to prepareSeatingInstructions()
         )
     }
 
+    private fun prepareSeatingInstructions(): Array<Instruction> {
+        val isEmpty = Instruction("자리 비었나요?", null, "자리 안내시 \"자리 비었나요?\"라고 물어봅니다.\n\t\t" +
+                "-\"자리 있나요?\"는 했갈려요\n" +
+                "\t\t\t\t- 사람이 있어서 자리(누가)가 있다는건지\n" +
+                "\t\t\t\t- 사람이 없어서 (빈)자리가 있다는건지")
+        val remember = Instruction("두 자리 기억", null, "두 자리 이상 남은 줄은 따로 기억해요\n" +
+                "\t\t- 한 사람은 한자리 남은 줄로 안내해요\n" +
+                "\t\t- 두 사람은 두자리 남은 줄로 안내해요\n" +
+                "\t\t- 이렇게하면 두 자리 찾기/만들기 쉬워요")
+        val time = Instruction("안내 시작 시점", null, "일어나서 찬양하기 시작할 때 부터 안내해요\n" +
+                "\t\t- 그 때 부터 예배당 입장시 자리가 비었는지 한 눈에 확인 할 수 없어요\n")
+        val twoRows = Instruction("막은 두 줄 활용법", null,"줄로 막은 마지막 두 줄은 설교 시작 할 때 열어요\n" +
+                "\t\t- 설교 중에 빈 자리 찾아서 안내하려면 많은 사람들이 방해되요")
+
+        return arrayOf(isEmpty, remember, time, twoRows)
+    }
+
     private fun prepareReviewInstructions(): Array<Instruction> {
-        val yebe_order = Instruction("예배 순서", null,"1.순서\n\t\t카톡에 올라온 예배 순서와 동일한 순서인가?\n" +
+        val serviceOrder = Instruction("예배 순서", null,"1.순서\n\t\t카톡에 올라온 예배 순서와 동일한 순서인가?\n" +
                 "2.암송구절\n\t\t최대한 흰 면에 있게 옮겨주세요\n" +
                 "3.형제 & 자매 확인 (성경봉독, 대표기도, etc)\n" +
                 "4.날짜 & 호수")
@@ -50,7 +67,7 @@ object DataManager {
                 "새 셀원란 (마지막 줄)에 추가 되었나?\n\t\t" +
                 "새 셀원 & 새신자: 이름 오타? 복붙으로 오타 줄여요")
         val back = Instruction("민포", null, "작성자 형제 자매 확인")
-        return arrayOf(yebe_order, ad, cell, back)
+        return arrayOf(serviceOrder, ad, cell, back)
     }
 
     private fun prepareServiceOrderInstructions(): Array<Instruction> {
