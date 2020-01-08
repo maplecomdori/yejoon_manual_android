@@ -20,10 +20,11 @@ class InstructionListActivity : AppCompatActivity() {
             DataManager.juboTasks)
 
         juboTaskList.setOnItemClickListener { _, _, position, _ ->
-            val task = DataManager.juboTasks.get(position)
+            val task = DataManager.juboTasks[position]
             var intent = Intent()
             intent.putExtra(WHICH_SECTION, JUBO_SECTION)
             intent.putExtra(TITLE_POSITION, position)
+            intent.putExtra("TITLE", task)
 
             if (DataManager.keyValueTasks.contains(task)) {
                 intent.setClass(this, KeyValueActivity::class.java)
@@ -40,7 +41,20 @@ class InstructionListActivity : AppCompatActivity() {
             DataManager.serviceTasks)
 
 //        yebeTaskList.setOnItemClickListener { parent, view, position, id ->
-        yebeTaskList.setOnItemClickListener { _, _, _, _ ->
+        yebeTaskList.setOnItemClickListener { _, _, position, _ ->
+            val task = DataManager.serviceTasks[position]
+            val intent = Intent()
+            intent.putExtra(WHICH_SECTION, YEBE_SECTION)
+            intent.putExtra(TITLE_POSITION, position)
+
+            if (DataManager.keyValueTasks.contains(task)) {
+                intent.setClass(this, KeyValueActivity::class.java)
+            }
+            else if (DataManager.imageTasks.contains(task)) {
+                intent.setClass(this, ImageInstructionActivity::class.java)
+            }
+
+            startActivity(intent)
 
         }
     }
