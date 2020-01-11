@@ -1,9 +1,11 @@
 package com.example.yejoonmanual
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.TextViewCompat
 import kotlinx.android.synthetic.main.activity_shortcut.*
 import kotlinx.android.synthetic.main.content_shortcut.*
 
@@ -17,7 +19,7 @@ class KeyValueActivity : AppCompatActivity() {
         setContentView(R.layout.activity_shortcut)
         setSupportActionBar(toolbar)
 
-        setTitle()
+        this.title = intent.getStringExtra("TITLE")
         dataMap = getTaskDataMap() ?: mapOf()
         createUI()
     }
@@ -40,6 +42,8 @@ class KeyValueActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             params.setMargins(0, 0, 0, 20)
             tvTitle.setLayoutParams(params)
+            TextViewCompat.setTextAppearance(tvTitle, R.style.instructionTitle)
+
             ll.addView(tvTitle)
 
             for ((k, v) in kvMap) {
@@ -56,15 +60,17 @@ class KeyValueActivity : AppCompatActivity() {
                 tvKey.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
                 tvKey.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f)
+                tvKey.setTextColor(Color.WHITE)
 
                 val tvValue = TextView(this)
                 tvValue.textSize = 20f
                 tvValue.text = v
                 tvValue.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_END
+                tvValue.setTextColor(Color.WHITE)
 
                 tvValue.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT, 0.6f)
-
+//                TextViewCompat.setTextAppearance(tvValue, R.style.instructionDescription)
                 container.addView(tvKey)
                 container.addView(tvValue)
                 ll.addView((container))
@@ -74,24 +80,6 @@ class KeyValueActivity : AppCompatActivity() {
         }
 
 
-    }
-
-    private fun setTitle() {
-        val taskIndex = intent.getIntExtra(TITLE_POSITION, POSITION_NOT_SET)
-        val sectionTasks = getSectionTasks()
-        val taskTitle = sectionTasks[taskIndex]
-        this.title = taskTitle
-    }
-
-    private fun getSectionTasks(): Array<String> {
-        val section = intent.getStringExtra(WHICH_SECTION)
-        val sectionTasks = if (section.equals(JUBO_SECTION))
-            DataManager.juboTasks
-        else if (section.equals(YEBE_SECTION))
-            DataManager.serviceTasks
-        else
-            arrayOf()
-        return sectionTasks
     }
 
     private fun getTaskDataMap(): Map<String, Map<String, String>>? {
